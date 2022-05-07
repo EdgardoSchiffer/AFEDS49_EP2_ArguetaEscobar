@@ -17,4 +17,11 @@ class Vendedor extends Model
         'nit',
         'id_usuario'
     ];
+
+    protected $data = ['deleted_at'];
+    
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

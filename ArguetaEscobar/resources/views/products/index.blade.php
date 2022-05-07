@@ -85,16 +85,16 @@
             </thead>
             <tbody>
                 @foreach ($products as $item)
-                <!-- id="sid { { $item->id }}" -->    
-                <tr>
-                        <!--<input type="hidden" class="delete_id" value="{ { $item->id }}">-->
+                <!--  -->    
+                <tr id="sid{{ $item->id }}">
+                        <input type="hidden" class="delete_id" value="{{ $item->id }}">
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->product_name }}</td>
                         <td>{{ $item->description }}</td>
                         <td>{{ $item->unit_price }}</td>
                         <td>{{ $item->stock }}</td>
                         <td>{{ $item->warranty }}</td>
-                        <td>{{ $item->seller_id }}</td>
+                        <td>{{ $item->user_id }}</td>
                         <td>
                             <button type="button" class="btn btn-danger mr-1 deletebtn ">Eliminar</button>
                             <a href="{{ route('products.edit', ['product' => $item->id]) }}"

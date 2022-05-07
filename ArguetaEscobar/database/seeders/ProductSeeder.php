@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Productos;
-use Carbon\Carbon;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
-class ProductosSeeder extends Seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +14,7 @@ class ProductosSeeder extends Seeder
      */
     public function run()
     {
-        Productos::insert([
+        Product::insert([
             [
               'id' => 1,
               'product_name' => 'Detergente',
@@ -24,8 +23,8 @@ class ProductosSeeder extends Seeder
               'stock'=>10,
               'warranty'=>1,
               'user_id'=>1,
-              'created_at' => Carbon::now(),
-              'updated_at' => Carbon::now()
+              //'created_at' => Carbon::now(),
+              //'updated_at' => Carbon::now()
           ],
           [
             'id' => 2,
@@ -35,8 +34,8 @@ class ProductosSeeder extends Seeder
               'stock'=>5,
               'warranty'=>1,
               'user_id'=>1,
-              'created_at' => Carbon::now(),
-              'updated_at' => Carbon::now()
+              //'created_at' => Carbon::now(),
+              //'updated_at' => Carbon::now()
           ],
       ]);
     }
