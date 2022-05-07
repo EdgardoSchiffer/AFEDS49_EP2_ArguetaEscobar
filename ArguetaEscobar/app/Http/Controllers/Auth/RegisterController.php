@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Vendedor;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -52,7 +53,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'dui'=>['required', 'string', 'regex:/^\d{9}$/'],
+            'nit'=>['required', 'string', 'regex:/^\d{14}$/'],
+            'address'=>['required', 'string']
+        ],[
+            'dui' => 'El DUI debe contener 9 digitos sin guiones',
+            'nit' => 'El NIT debe contener 14 digitos sin guiones',
         ]);
     }
 
@@ -64,10 +71,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        $vendedor = Vendedor::create(
+            [
+                'dui'=>$data['dui'],
+                'address'=>$data['address'],
+                'nit'=>$data['nit'],
+                'id_usuario'=>$user->id,
+            ]);
+        return $user;
     }
 }
