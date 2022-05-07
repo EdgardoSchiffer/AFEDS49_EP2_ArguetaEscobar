@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/products', [ProductosController::class, 'index'])->name('products.index');
@@ -27,3 +27,5 @@ Route::get('/products/{product}', [ProductosController::class, 'show'])->name('p
 Route::get('/products/{product}/edit', [ProductosController::class, 'edit'])->name('products.edit');
 Route::put('/products/{product}', [ProductosController::class, 'update'])->name('products.update');
 Route::delete('/products/{id}', [ProductosController::class, 'destroy'])->name('products.destroy');
+
+Auth::routes();

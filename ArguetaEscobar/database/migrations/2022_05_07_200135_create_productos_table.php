@@ -17,7 +17,7 @@ class CreateProductosTable extends Migration
             $table->id();
             $table->string('product_name');
             $table->string('description');
-            $table->string('unit_price');
+            $table->float('unit_price');
             $table->string('stock');
             $table->integer('warranty');
             //$table->string('seller_id');
