@@ -10,6 +10,8 @@ class Productos extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $data = ['deleted_at'];
+
     public function vendedor(){
         return $this->belongsTo(Vendedor::class);
     }
