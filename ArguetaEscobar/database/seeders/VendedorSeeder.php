@@ -33,6 +33,12 @@ class VendedorSeeder extends Seeder
                 'address'=>'Calle 3, El Salvador',
                 'nit'=>'06141234561116',
                 'id_usuario'=>User::where('email', 'vendedor3@test.com')->first()->id,
+            ],
+            [
+                'dui'=>'987612345',
+                'address'=>'Calle 3, El Salvador',
+                'nit'=>'06141234561116',
+                'id_usuario'=>User::where('email', 'vendedor4@test.com')->first()->id,
             ]
         ];
         foreach ($vendedores as $v) {
