@@ -96,6 +96,8 @@ class ProductosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
+     * 
+     * 
      */
     public function update(Request $request, Productos $product)
     {
