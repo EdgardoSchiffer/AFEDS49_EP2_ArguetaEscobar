@@ -40,7 +40,7 @@
     <h2 class="text-center mb-5">Editar producto</h2>
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form method="POST" id="editform" action="{{ route('products.update', ['product' => $product->id]) }}" novalidate>
+            <form method="POST" id="editform" class="confirmar-accion" action="{{ route('products.update', ['product' => $product->id]) }}" novalidate>
                 @csrf
                 @method('PUT')
                 <div class="row mb-3">
