@@ -18,7 +18,7 @@ class ProductosSeeder extends Seeder
         Productos::insert([
             [
               'id' => 1,
-              'productName' => 'Detergente',
+              'product_name' => 'Detergente',
               'description' => 'Material de limpieza',
               'unit_price' => 3.20,
               'stock'=>10,
@@ -29,7 +29,7 @@ class ProductosSeeder extends Seeder
           ],
           [
             'id' => 2,
-              'productName' => 'Camisa',
+              'product_name' => 'Camisa',
               'description' => 'Ropa para damas y caballeros',
               'unit_price' => 3,
               'stock'=>5,
