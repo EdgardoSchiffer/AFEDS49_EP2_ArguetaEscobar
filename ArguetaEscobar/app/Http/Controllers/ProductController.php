@@ -115,7 +115,7 @@ class ProductController extends Controller
         $product->warranty = $data['warranty'];
         $product->save();
 
-        $products = DB::table('productos');
+        $products = DB::table('products');
         return View('products.index')->with('products', $products);
     }
 
