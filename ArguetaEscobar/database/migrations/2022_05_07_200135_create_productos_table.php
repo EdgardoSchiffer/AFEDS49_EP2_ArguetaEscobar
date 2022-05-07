@@ -15,6 +15,13 @@ class CreateProductosTable extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
+            $table->string('product_name');
+            $table->string('description');
+            $table->string('unit_price');
+            $table->string('stock');
+            $table->integer('warranty');
+            $table->string('seller_id');
+            //$table->foreignId('seller_id')->reference('id')->on('vendedor');
             $table->timestamps();
         });
     }

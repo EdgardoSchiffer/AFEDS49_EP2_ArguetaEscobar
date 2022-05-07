@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Productos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductosController extends Controller
 {
@@ -15,6 +17,9 @@ class ProductosController extends Controller
     public function index()
     {
         //
+        $products = DB::table('productos');
+        //$products = DB::table('products')->where('deleted_at',"=", null)->paginate(1);
+        return View('products/index')->with('products', $products);
     }
 
     /**
@@ -25,6 +30,7 @@ class ProductosController extends Controller
     public function create()
     {
         //
+        return View('products/create');
     }
 
     /**
@@ -35,7 +41,27 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'product_name' => 'required|min:5|max:50',
+            'description' => 'required|min:5|max:100',
+            'unit_price' => 'required',
+            'stock' => 'required|min:5|max:8',
+            'warranty' => 'required',
+        ]);
+
+        auth()->user()->productos()->create([
+            'product_name' => $data['product_name'],
+            'description' => $data['description'],
+            'unit_price' => $data['unit_price'],
+            'stock' => $data['stock'],
+            'warranty' => $data['warranty'],
+            'seller_id' => Auth::user()->id,
+            //'created_at' => Carbon::now(),
+            //'updated_at' => Carbon::now()
+        ]);
+        $products = auth()->user()->productos;
+
+        return View('products.index')->with('products', $products);
     }
 
     /**
@@ -44,9 +70,10 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function show(Productos $productos)
+    public function show(Productos $product)
     {
         //
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -55,9 +82,10 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Productos $productos)
+    public function edit(Productos $product)
     {
         //
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -67,9 +95,26 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Productos $productos)
+    public function update(Request $request, Productos $product)
     {
         //
+        $data = request()->validate([
+            'product_name' => 'required|min:5|max:50',
+            'description' => 'required|min:5|max:100',
+            'unit_price' => 'required',
+            'stock' => 'required|min:5|max:8',
+            'warranty' => 'required',
+        ]);
+
+        $product->product_name = $data['product_name'];
+        $product->description = $data['description'];
+        $product->unit_price = $data['unit_price'];
+        $product->stock = $data['stock'];
+        $product->warranty = $data['warranty'];
+        $product->save();
+
+        $products = DB::table('productos');
+        return View('products.index')->with('products', $products);
     }
 
     /**
@@ -78,8 +123,12 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Productos $productos)
+    public function destroy($id)
     {
         //
+        //$product = Productos::findOrFail($id);
+        
+        $resp = Productos::destroy($id);
+        return response()->json(array('status' => true));
     }
 }
