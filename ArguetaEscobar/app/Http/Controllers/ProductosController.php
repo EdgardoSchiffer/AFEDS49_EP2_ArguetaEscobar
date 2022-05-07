@@ -17,7 +17,7 @@ class ProductosController extends Controller
     public function index()
     {
         //
-        $products = DB::table('productos');
+        $products = DB::table('products');
         //$products = DB::table('products')->where('deleted_at',"=", null)->paginate(1);
         return View('products/index')->with('products', $products);
     }

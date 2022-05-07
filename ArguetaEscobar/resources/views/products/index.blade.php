@@ -85,8 +85,9 @@
             </thead>
             <tbody>
                 @foreach ($products as $item)
-                    <tr id="sid{{ $item->id }}">
-                        <input type="hidden" class="delete_id" value="{{ $item->id }}">
+                <!-- id="sid { { $item->id }}" -->    
+                <tr>
+                        <!--<input type="hidden" class="delete_id" value="{{ $item->id }}">-->
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->product_name }}</td>
                         <td>{{ $item->description }}</td>
