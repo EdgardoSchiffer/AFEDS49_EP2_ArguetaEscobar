@@ -15,6 +15,11 @@ class CreateVendedorsTable extends Migration
     {
         Schema::create('vendedors', function (Blueprint $table) {
             $table->id();
+            $table->string('dui', 9);
+            $table->string('address', 300);
+            $table->string('nit', 14);
+            $table->bigInteger('id_usuario')->unsigned();
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->timestamps();
         });
     }
