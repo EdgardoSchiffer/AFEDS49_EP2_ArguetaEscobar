@@ -45,9 +45,19 @@ class User extends Authenticatable
 
     //use SoftDeletes;
     protected $data = ['deleted_at'];
-    
-    public function productos()
+    /*
+    public function vendedor()
     {
-        return $this->hasMany(Productos::class);
+        return $this->hasMany(Vendedor::class);
+    }*/
+ /*
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }*/
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
+    
 }
