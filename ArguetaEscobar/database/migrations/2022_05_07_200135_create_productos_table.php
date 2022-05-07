@@ -20,8 +20,8 @@ class CreateProductosTable extends Migration
             $table->float('unit_price');
             $table->string('stock');
             $table->integer('warranty');
-            //$table->string('seller_id');
             $table->foreignId('seller_id')->reference('id')->on('vendedor');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
