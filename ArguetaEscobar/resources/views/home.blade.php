@@ -14,7 +14,17 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <h3>Bienvenido {{ Auth::user()->name }} Puedes realiza las siguientes acciones:</h3>
+                    <br>
+                    <br>
+                    <div class="col-12">
+                        <a class="btn btn-primary col-12" href="{{ route('products.create') }}">Registrar producto</a>
+                    </div>
+                    <br>
+                    <div class="col-12">
+                        <a class="btn btn-primary col-12" href="{{ route('products.index') }}">Ver tus productos</a>
+                    </div>
+                    
                 </div>
             </div>
         </div>
