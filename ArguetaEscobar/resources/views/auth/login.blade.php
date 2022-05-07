@@ -8,6 +8,11 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                    <center>
+                        <h4>Bienvenido al sistema de registro de ventas para AFE</h4>
+                        <h5>Por favor, ingresa tus credenciales para continuar.</h5>
+                        <br>
+                    </center>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -41,7 +46,7 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
+                                <div class="form-check" style="float:right">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
@@ -52,13 +57,14 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary col-12">
                                     {{ __('Login') }}
                                 </button>
-
+                            </div>
+                            <div class="col-md-6 offset-md-4">
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link col-12" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
